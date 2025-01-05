@@ -1,12 +1,12 @@
 import { Metadata } from "next";
-import Header from "./components/Header/Header";
+import Header from "./(components)/Header/Header";
 import { IconBellRinging } from "@tabler/icons-react";
 
 export const metadata: Metadata = {
   title: 'Dashboard'
 };
 
-export default function Cards() {
+export default function Page() {
 
   return (
     <>

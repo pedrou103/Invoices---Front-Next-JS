@@ -1,13 +1,8 @@
+import { MenuItemProps } from '@/app/lib/definitions';
+import { loadIcon } from '@/app/lib/tools';
 import { IconLoader } from '@tabler/icons-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-
-interface MenuItemProps {
-  href: string;
-  title: string;
-  iconName: string;
-  isActive: boolean;
-}
 
 const MenuItem = ({ href, title, iconName, isActive }: MenuItemProps) => {
   const [IconComponent, setIconComponent] = useState<React.ComponentType<{ className?: string }> | null>(null);
@@ -24,22 +19,16 @@ const MenuItem = ({ href, title, iconName, isActive }: MenuItemProps) => {
   return (
     <Link
       href={href}
-      className={`flex gap-3 items-center p-3 rounded-2xl ${isActive ? `bg-sky-600 drop-shadow-sm text-slate-900` : `hover:bg-sky-600 hover:drop-shadow-md hover:text-slate-900`} transition`}
+      className={`flex gap-2 items-center p-2 rounded-xl text-sm ${isActive ? `bg-purple-300 drop-shadow-sm text-slate-900` : `hover:bg-purple-300 hover:drop-shadow-md hover:text-slate-900`} transition`}
     >
       {IconComponent ? (
-        <IconComponent className="h-7 w-7" />
+        <IconComponent className="h-6 w-6" />
       ) : (
-        <IconLoader className='h-7 w-7' />
+        <IconLoader className='h-6 w-6' />
       )}
-      <p className="font-semibold">{title}</p>
+      <p className="">{title}</p>
     </Link>
   );
 };
 
 export default MenuItem;
-
-// Função para importar ícones dinamicamente
-const loadIcon = async (iconName: string) => {
-  const iconModule = await import('@tabler/icons-react');
-  return iconModule[`Icon${iconName}`];
-};
